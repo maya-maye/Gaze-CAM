@@ -157,23 +157,6 @@ model = build_model("vivit", n_act)
 model = load_or_train(model, train_loader, test_loader, l2i, i2l, n_act, arch="vivit", split=1)
 ```
 
-## Gaze-CAM Alignment (R3D-18, Split 1)
-
-<p align="center">
-  <img src="docs/fig_correct_vs_incorrect.png" alt="Correct vs Incorrect alignment" width="600">
-</p>
-
-| Condition | NSS | AUC | n |
-|-----------|-----|-----|---|
-| Overall | 1.08 | 0.77 | 2,002 |
-| Correct | 1.21 | 0.81 | 971 |
-| Incorrect | 0.96 | 0.74 | 1,031 |
-| Shuffle baseline | ~0.0 | ~0.5 | – |
-
-- **Mann-Whitney U test:** p < 0.000001, rank-biserial r = −0.15
-- **Error buckets:** Wrong-noun errors (NSS=0.96) show lower alignment than wrong-verb errors (NSS=1.21)
-- **Temporal shift:** Flat curve across ±5 frames — no meaningful lead or lag
-
 ## Requirements
 
 - Python 3.10+

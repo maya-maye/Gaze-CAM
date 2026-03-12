@@ -1,0 +1,13 @@
+torch
+torchvision
+pytorchvideo
+transformers
+accelerate
+opencv-python
+numpy
+pandas
+matplotlib
+tqdm
+scipy
+Pillow
+imageio

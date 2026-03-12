@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Data (too large for git)
+data/
+
+# Outputs (generated figures, analysis CSVs - regenerated easily)
+outputs/analysis/
+outputs/figures/
+outputs/cam_grids/
+
+# Keep model weights (tracked via Git LFS)
+# outputs/*.pt  <-- NOT ignored, committed for group use
+
+# Preprocessed tensor cache (large, regenerated automatically)
+cache/
+
+# Original Colab notebook (superseded by modular codebase)
+gaze_cam*.py
+
+# Temporary clones
+_maya_temp/
+
+# Notebook outputs / checkpoints
+notebooks/.ipynb_checkpoints/

@@ -1,0 +1,212 @@
+
+Project found at: /mnt/user/appdata/Github/Gaze CAM
+Starting Docker container with GPU...
+=== Inside Docker container ===
+GPU:
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+AttributeError: 'torch._C._CudaDeviceProperties' object has no attribute 'total_mem'. Did you mean: 'total_memory'?
+NVIDIA GeForce RTX 3090
+
+=== Installing dependencies ===
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+
+=== Running full analysis (4 models, 500 clips each) ===
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/workspace/scripts/analysis.py", line 28, in <module>
+    import torch
+  File "/opt/conda/lib/python3.10/site-packages/torch/__init__.py", line 1382, in <module>
+    from .functional import *  # noqa: F403
+  File "/opt/conda/lib/python3.10/site-packages/torch/functional.py", line 7, in <module>
+    import torch.nn.functional as F
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/opt/conda/lib/python3.10/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /opt/conda/conda-bld/pytorch_1695392067780/work/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+Traceback (most recent call last):
+  File "/workspace/scripts/analysis.py", line 46, in <module>
+    from gaze_cam.model import build_model, model_forward
+  File "/workspace/gaze_cam/model.py", line 17, in <module>
+    from torch.amp import autocast, GradScaler
+ImportError: cannot import name 'GradScaler' from 'torch.amp' (/opt/conda/lib/python3.10/site-packages/torch/amp/__init__.py)
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/workspace/scripts/analysis.py", line 28, in <module>
+    import torch
+  File "/opt/conda/lib/python3.10/site-packages/torch/__init__.py", line 1382, in <module>
+    from .functional import *  # noqa: F403
+  File "/opt/conda/lib/python3.10/site-packages/torch/functional.py", line 7, in <module>
+    import torch.nn.functional as F
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/opt/conda/lib/python3.10/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /opt/conda/conda-bld/pytorch_1695392067780/work/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+Traceback (most recent call last):
+  File "/workspace/scripts/analysis.py", line 46, in <module>
+    from gaze_cam.model import build_model, model_forward
+  File "/workspace/gaze_cam/model.py", line 17, in <module>
+    from torch.amp import autocast, GradScaler
+ImportError: cannot import name 'GradScaler' from 'torch.amp' (/opt/conda/lib/python3.10/site-packages/torch/amp/__init__.py)
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/workspace/scripts/analysis.py", line 28, in <module>
+    import torch
+  File "/opt/conda/lib/python3.10/site-packages/torch/__init__.py", line 1382, in <module>
+    from .functional import *  # noqa: F403
+  File "/opt/conda/lib/python3.10/site-packages/torch/functional.py", line 7, in <module>
+    import torch.nn.functional as F
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/opt/conda/lib/python3.10/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /opt/conda/conda-bld/pytorch_1695392067780/work/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+Traceback (most recent call last):
+  File "/workspace/scripts/analysis.py", line 46, in <module>
+    from gaze_cam.model import build_model, model_forward
+  File "/workspace/gaze_cam/model.py", line 17, in <module>
+    from torch.amp import autocast, GradScaler
+ImportError: cannot import name 'GradScaler' from 'torch.amp' (/opt/conda/lib/python3.10/site-packages/torch/amp/__init__.py)
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/workspace/scripts/analysis.py", line 28, in <module>
+    import torch
+  File "/opt/conda/lib/python3.10/site-packages/torch/__init__.py", line 1382, in <module>
+    from .functional import *  # noqa: F403
+  File "/opt/conda/lib/python3.10/site-packages/torch/functional.py", line 7, in <module>
+    import torch.nn.functional as F
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/opt/conda/lib/python3.10/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /opt/conda/conda-bld/pytorch_1695392067780/work/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+Traceback (most recent call last):
+  File "/workspace/scripts/analysis.py", line 46, in <module>
+    from gaze_cam.model import build_model, model_forward
+  File "/workspace/gaze_cam/model.py", line 17, in <module>
+    from torch.amp import autocast, GradScaler
+ImportError: cannot import name 'GradScaler' from 'torch.amp' (/opt/conda/lib/python3.10/site-packages/torch/amp/__init__.py)
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/workspace/scripts/compare_models.py", line 22, in <module>
+    from gaze_cam.config import OUTPUT_DIR, SUPPORTED_ARCHS, SPLIT
+  File "/workspace/gaze_cam/config.py", line 7, in <module>
+    import torch
+  File "/opt/conda/lib/python3.10/site-packages/torch/__init__.py", line 1382, in <module>
+    from .functional import *  # noqa: F403
+  File "/opt/conda/lib/python3.10/site-packages/torch/functional.py", line 7, in <module>
+    import torch.nn.functional as F
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/opt/conda/lib/python3.10/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/opt/conda/lib/python3.10/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at /opt/conda/conda-bld/pytorch_1695392067780/work/torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+  Loaded r3d18: 493 clips
+  Missing: /workspace/outputs/analysis/slowfast_r50/alignment_split1.csv
+  Missing: /workspace/outputs/analysis/timesformer/alignment_split1.csv
+  Missing: /workspace/outputs/analysis/vivit/alignment_split1.csv
+Need at least 2 models to compare. Run analysis.py first.
+
+======================================================================
+  RUNNING ANALYSIS: r3d18
+======================================================================
+
+
+  WARNING: r3d18 analysis exited with code 1
+
+======================================================================
+  RUNNING ANALYSIS: slowfast_r50
+======================================================================
+
+
+  WARNING: slowfast_r50 analysis exited with code 1
+
+======================================================================
+  RUNNING ANALYSIS: timesformer
+======================================================================
+
+
+  WARNING: timesformer analysis exited with code 1
+
+======================================================================
+  RUNNING ANALYSIS: vivit
+======================================================================
+
+
+  WARNING: vivit analysis exited with code 1
+
+======================================================================
+  CROSS-ARCHITECTURE COMPARISON
+======================================================================
+
+
+=== DONE ===
+Results saved to outputs/analysis/
+total 624
+drwxrwxrwx 1 1000 users    270 Mar 15 06:06 .
+drwxrwxrwx 1 1000 users    392 Mar 15 07:16 ..
+-rwxrw-rw- 1 1000 users 400226 Feb 25 16:50 alignment_split1.csv
+-rwxrw-rw- 1 1000 users  56125 Feb 25 17:34 fig_correct_vs_incorrect.png
+-rwxrw-rw- 1 1000 users  43421 Feb 25 17:34 fig_error_buckets.png
+-rwxrw-rw- 1 1000 users  51587 Feb 25 17:34 fig_temporal_lag.png
+-rwxrw-rw- 1 1000 users  77527 Feb 25 17:34 fig_verb_alignment.png
+drwxrwxrwx 1 1000 users    222 Mar 14 22:58 r3d18
+-rwxrw-rw- 1 1000 users    745 Mar 14 22:58 temporal_shifts.csv

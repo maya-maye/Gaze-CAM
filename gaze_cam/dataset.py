@@ -130,7 +130,7 @@ class EGTEAActionDataset(Dataset):
             self.cache_dir.mkdir(parents=True, exist_ok=True)
         miss_no_file = miss_parse = miss_label = 0
 
-        for stem in allowed_stems:
+        for stem in sorted(allowed_stems):
             p = mp4_by_stem.get(stem)
             if p is None:
                 miss_no_file += 1

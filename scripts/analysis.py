@@ -407,14 +407,15 @@ def run_analysis(args):
             if len(g_clip) < 2:
                 continue
 
-            # Get frame dimensions from first video frame
+            # Get frame dimensions from video metadata (no decode — avoids transient I/O failures)
             clip_path = Path(paths[i])
             cap = cv2.VideoCapture(str(clip_path))
-            ret, frame = cap.read()
+            frame_w = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+            frame_h = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
             cap.release()
-            if not ret:
+            if frame_w == 0 or frame_h == 0:
+                print(f"  [WARN] Could not read dimensions for {clip_path.name}, skipping")
                 continue
-            frame_h, frame_w = frame.shape[:2]
 
             # Upsample CAM
             cam_i = cam_bthw[i].cpu()  # (T_model, H_cam, W_cam)
@@ -501,10 +502,13 @@ def run_analysis(args):
     print_summary(df)
 
     # ── Shuffle baseline ──
-    print("\n" + "="*60)
-    print("SHUFFLE BASELINE (random gaze-to-clip assignment)")
-    print("="*60)
-    shuffle_nss = compute_shuffle_baseline(df, clip_cam_cache, n_shuffles=args.n_shuffles)
+    if not getattr(args, 'inference_only', False):
+        print("\n" + "="*60)
+        print("SHUFFLE BASELINE (random gaze-to-clip assignment)")
+        print("="*60)
+        shuffle_nss = compute_shuffle_baseline(df, clip_cam_cache, n_shuffles=args.n_shuffles)
+    else:
+        shuffle_nss = None
 
     # ── Center-bias baseline summary ──
     cb = df["center_bias_nss"].dropna()
@@ -531,7 +535,7 @@ def run_analysis(args):
                 print(f"    Mann-Whitney U: p={p:.6f}")
 
     # ── Model randomization control ──
-    if not args.skip_randomization:
+    if not args.skip_randomization and not getattr(args, 'inference_only', False):
         print("\n" + "="*60)
         print("MODEL RANDOMIZATION CONTROL (random-weight CAMs)")
         print("="*60)
@@ -542,7 +546,7 @@ def run_analysis(args):
         rand_nss = None
 
     # ── Occlusion sensitivity ──
-    if not args.skip_occlusion:
+    if not args.skip_occlusion and not getattr(args, 'inference_only', False):
         print("\n" + "="*60)
         print("OCCLUSION SENSITIVITY (CAM faithfulness)")
         print("="*60)
@@ -551,20 +555,26 @@ def run_analysis(args):
         print("\n  [Skipped occlusion sensitivity — use --skip-occlusion=false]")
 
     # ── Temporal lead/lag ──
-    print("\n" + "="*60)
-    print("TEMPORAL LEAD / LAG ANALYSIS")
-    print("="*60)
-    lag_df = compute_temporal_shifts(clip_cam_cache, args.lag_range, out_dir)
+    if not getattr(args, 'inference_only', False):
+        print("\n" + "="*60)
+        print("TEMPORAL LEAD / LAG ANALYSIS")
+        print("="*60)
+        lag_df = compute_temporal_shifts(clip_cam_cache, args.lag_range, out_dir)
+    else:
+        lag_df = None
 
     # ── Generate all plots ──
     print("\n" + "="*60)
     print(f"GENERATING PLOTS -> {out_dir}")
     print("="*60)
-    plot_correct_vs_incorrect(df, shuffle_nss, rand_nss, out_dir)
-    plot_error_buckets(df, shuffle_nss, out_dir)
-    plot_temporal_lag(lag_df, args.lag_range, out_dir)
-    plot_verb_alignment(df, out_dir=out_dir)
-    plot_noun_alignment(df, out_dir=out_dir)
+    if not getattr(args, 'inference_only', False):
+        plot_correct_vs_incorrect(df, shuffle_nss, rand_nss, out_dir)
+        plot_error_buckets(df, shuffle_nss, out_dir)
+        plot_temporal_lag(lag_df, args.lag_range, out_dir)
+        plot_verb_alignment(df, out_dir=out_dir)
+        plot_noun_alignment(df, out_dir=out_dir)
+    else:
+        print("\n  [inference-only mode — skipped baselines, temporal, plots]") 
 
     print(f"\nAll outputs saved to: {out_dir}")
 
@@ -1191,6 +1201,8 @@ def main():
                         help="Skip the model-randomization control")
     parser.add_argument("--skip-occlusion", action="store_true",
                         help="Skip occlusion sensitivity analysis")
+    parser.add_argument("--inference-only", action="store_true",
+                        help="Only run forward passes + CSV; skip all baselines/analyses")
     parser.add_argument("--force", action="store_true",
                         help="Force full recompute even if CSV exists")
     args = parser.parse_args()

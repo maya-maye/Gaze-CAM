@@ -1,5 +1,7 @@
-# Paper (keep private)
-docs/writeup/paper.tex
+# Private docs (not for github)
+docs/writeup/
+docs/slides/
+document.txt
 
 # Python
 __pycache__/
@@ -32,6 +34,8 @@ data/
 outputs/analysis/
 outputs/figures/
 outputs/cam_grids/
+outputs/visualizations/
+outputs/*.log
 
 # Keep model weights (tracked via Git LFS)
 # outputs/*.pt  <-- NOT ignored, committed for group use

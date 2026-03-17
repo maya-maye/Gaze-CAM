@@ -21,6 +21,8 @@ def main():
     parser.add_argument("--max-test", type=int, default=500)
     parser.add_argument("--n-shuffles", type=int, default=10)
     parser.add_argument("--skip-occlusion", action="store_true")
+    parser.add_argument("--skip-randomization", action="store_true")
+    parser.add_argument("--inference-only", action="store_true")
     args = parser.parse_args()
 
     scripts_dir = Path(__file__).resolve().parent
@@ -39,6 +41,10 @@ def main():
         ]
         if args.skip_occlusion:
             cmd.append("--skip-occlusion")
+        if args.skip_randomization:
+            cmd.append("--skip-randomization")
+        if args.inference_only:
+            cmd.append("--inference-only")
         # ViViT needs smaller batch for CAM computation
         if model == "vivit":
             cmd[cmd.index("--batch-size") + 1] = "1"
